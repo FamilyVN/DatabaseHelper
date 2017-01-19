@@ -1,0 +1,4 @@
+<resources>
+    <string name="app_name">DatabaseHelper</string>
+    <string name="text_test_data_load">Test data load</string>
+</resources>
