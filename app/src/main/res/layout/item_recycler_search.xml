@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<TextView
+    android:id="@+id/text_list_search"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:gravity="center_vertical"
+    android:paddingBottom="@dimen/margin_padding_5"
+    android:paddingTop="@dimen/margin_padding_5"
+    android:textSize="@dimen/text_size_14"/>
