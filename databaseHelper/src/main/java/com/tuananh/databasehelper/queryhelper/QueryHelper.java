@@ -8,6 +8,8 @@ import java.util.List;
 import java.util.Map;
 
 import static com.tuananh.databasehelper.ConstantDatabase.AND;
+import static com.tuananh.databasehelper.ConstantDatabase.ASC;
+import static com.tuananh.databasehelper.ConstantDatabase.DESC;
 import static com.tuananh.databasehelper.ConstantDatabase.FROM;
 import static com.tuananh.databasehelper.ConstantDatabase.GROUP_BY;
 import static com.tuananh.databasehelper.ConstantDatabase.HAVING;
@@ -174,6 +176,83 @@ public class QueryHelper {
             }
             mWhereClause += newWhere;
         }
+        return this;
+    }
+
+    /**
+     * choose sort
+     *
+     * @param columnName
+     * @param isDesc
+     * @return
+     */
+    public QueryHelper addOrderBy(String columnName, boolean isDesc) {
+        if (TextUtils.isEmpty(columnName)) {
+            return this;
+        }
+        String newOrderBy = columnName;
+        newOrderBy += isDesc ? DESC : ASC;
+        concatOrderByClause(newOrderBy);
+        return this;
+    }
+
+    /**
+     * add order by default
+     *
+     * @param columnName
+     * @return
+     */
+    public QueryHelper addOrderBy(String columnName) {
+        return addOrderBy(columnName, false);
+    }
+
+    /**
+     * add ", " for sql query
+     *
+     * @param newOrderBy
+     * @return
+     */
+    public QueryHelper concatOrderByClause(String newOrderBy) {
+        if (!TextUtils.isEmpty(newOrderBy)) {
+            if (!TextUtils.isEmpty(mOrderByClause)) {
+                mOrderByClause += ", ";
+            }
+            mOrderByClause += newOrderBy;
+        }
+        return this;
+    }
+
+    public QueryHelper concatGroupByClause(String newGroupBy) {
+        if (!TextUtils.isEmpty(newGroupBy)) {
+            if (!TextUtils.isEmpty(mGroupByClause)) {
+                mGroupByClause += ", ";
+            }
+            mGroupByClause += newGroupBy;
+        }
+        return this;
+    }
+
+    public QueryHelper addGroupBy(String columnName) {
+        if (TextUtils.isEmpty(columnName)) {
+            return this;
+        }
+        String newGroupBy = columnName;
+        concatGroupByClause(newGroupBy);
+        return this;
+    }
+
+    public QueryHelper addHaving(String having) {
+        mHavingClause = having;
+        return this;
+    }
+
+    public QueryHelper addLimit(String limit) {
+        mLimitClause = limit;
+        return this;
+    }
+
+    public QueryHelper addOffset(String offset) {
+        mOffsetClause = offset;
         return this;
     }
 
