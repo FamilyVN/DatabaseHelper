@@ -14,7 +14,6 @@ public class DbHelper extends DatabaseHelper {
 
     private DbHelper(Context context) {
         super(context, DATABASE_NAME, null, DATABASE_VERSION);
-
     }
 
     public static synchronized DbHelper getInstance(Context context) {
