@@ -66,11 +66,11 @@ public class QueryHelper {
             builder.append(masterTableName);
         }
         builder.append(JOIN)
-            .append(valueTableName)
-            .append(ON)
-            .append(columnMasterTableName)
-            .append(" = ")
-            .append(columnValueTableName);
+                .append(valueTableName)
+                .append(ON)
+                .append(columnMasterTableName)
+                .append(" = ")
+                .append(columnValueTableName);
         mJoinTable += builder.toString();
         return this;
     }
@@ -262,17 +262,17 @@ public class QueryHelper {
     public String getSqlQuery() {
         StringBuilder sqlQuery = new StringBuilder();
         sqlQuery.append(SELECT)
-            .append(getSelectColumn())
-            .append(FROM)
-            .append(!TextUtils.isEmpty(mJoinTable) ? mJoinTable : mTableName)
-            .append(!TextUtils.isEmpty(mWhereClause) ? WHERE + mWhereClause : "")
-            .append(!TextUtils.isEmpty(mGroupByClause) ? GROUP_BY + mGroupByClause : "")
-            .append(!TextUtils.isEmpty(mGroupByClause) && !TextUtils.isEmpty(mHavingClause)
-                ? HAVING + mHavingClause : "")
-            .append(!TextUtils.isEmpty(mOrderByClause) ? ORDER_BY + mOrderByClause : "")
-            .append(!TextUtils.isEmpty(mLimitClause) ? LIMIT + mLimitClause : "")
-            .append(!TextUtils.isEmpty(mLimitClause) && !TextUtils.isEmpty(mOffsetClause)
-                ? OFFSET + mOffsetClause : "");
+                .append(getSelectColumn())
+                .append(FROM)
+                .append(!TextUtils.isEmpty(mJoinTable) ? mJoinTable : mTableName)
+                .append(!TextUtils.isEmpty(mWhereClause) ? WHERE + mWhereClause : "")
+                .append(!TextUtils.isEmpty(mGroupByClause) ? GROUP_BY + mGroupByClause : "")
+                .append(!TextUtils.isEmpty(mGroupByClause) && !TextUtils.isEmpty(mHavingClause)
+                        ? HAVING + mHavingClause : "")
+                .append(!TextUtils.isEmpty(mOrderByClause) ? ORDER_BY + mOrderByClause : "")
+                .append(!TextUtils.isEmpty(mLimitClause) ? LIMIT + mLimitClause : "")
+                .append(!TextUtils.isEmpty(mLimitClause) && !TextUtils.isEmpty(mOffsetClause)
+                        ? OFFSET + mOffsetClause : "");
         return sqlQuery.toString();
     }
 

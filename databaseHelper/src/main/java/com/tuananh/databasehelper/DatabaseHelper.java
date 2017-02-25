@@ -38,10 +38,10 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         mNameDatabase = nameDatabase;
         if (android.os.Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN_MR1) {
             mDatabasePath =
-                String.format(FORMAT_TWO_STRING, context.getApplicationInfo().dataDir, DATABASE);
+                    String.format(FORMAT_TWO_STRING, context.getApplicationInfo().dataDir, DATABASE);
         } else {
             mDatabasePath = String.format(FORMAT_THREE_STRING, context.getFilesDir().getPath(),
-                context.getPackageName(), DATABASE);
+                    context.getPackageName(), DATABASE);
         }
         mContext = context;
         try {
@@ -61,14 +61,14 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 
     private boolean isDatabaseExisted() {
         File dbFile =
-            new File(String.format(FORMAT_TWO_STRING, mDatabasePath, mNameDatabase));
+                new File(String.format(FORMAT_TWO_STRING, mDatabasePath, mNameDatabase));
         return dbFile.exists();
     }
 
     private void copyDatabase() throws IOException {
         InputStream input = mContext.getAssets().open(mNameDatabase);
         String outFileName =
-            String.format(FORMAT_TWO_STRING, mDatabasePath, mNameDatabase);
+                String.format(FORMAT_TWO_STRING, mDatabasePath, mNameDatabase);
         OutputStream output = new FileOutputStream(outFileName);
         byte[] buffer = new byte[1024];
         int length;
@@ -96,7 +96,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
                 Map<String, Object> map = new HashMap<>();
                 for (int columnIndex = 0; columnIndex < cursor.getColumnCount(); columnIndex++) {
                     map.put(cursor.getColumnName(columnIndex),
-                        changeDataToString(cursor, columnIndex));
+                            changeDataToString(cursor, columnIndex));
                 }
                 mapList.add(map);
             }
@@ -105,7 +105,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         return mapList;
     }
 
-    public Object changeDataToString(Cursor cursor, int columnIndex) {
+    private Object changeDataToString(Cursor cursor, int columnIndex) {
         Object values = null;
         switch (cursor.getType(columnIndex)) {
             case FIELD_TYPE_INTEGER:
