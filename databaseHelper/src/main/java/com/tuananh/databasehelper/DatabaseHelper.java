@@ -105,7 +105,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         return mapList;
     }
 
-    public Object changeDataToString(Cursor cursor, int columnIndex) {
+    private Object changeDataToString(Cursor cursor, int columnIndex) {
         Object values = null;
         switch (cursor.getType(columnIndex)) {
             case FIELD_TYPE_INTEGER:
