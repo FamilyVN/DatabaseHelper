@@ -1,4 +1,7 @@
 <resources>
     <string name="app_name">DatabaseHelper</string>
     <string name="text_test_data_load">Test data load</string>
+    <string name="text_test_id">Id :</string>
+    <string name="text_test_value_en">Value English :</string>
+    <string name="text_test_value_ja">Value Japanese :</string>
 </resources>
