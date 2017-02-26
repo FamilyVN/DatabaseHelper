@@ -1,5 +1,7 @@
 <resources>
+    <dimen name="margin_padding_22">22dp</dimen>
     <dimen name="margin_padding_8">9dp</dimen>
     <dimen name="activity_vertical_margin">16dp</dimen>
+    <dimen name="text_size_18">18sp</dimen>
     <dimen name="text_size_14">14sp</dimen>
 </resources>
