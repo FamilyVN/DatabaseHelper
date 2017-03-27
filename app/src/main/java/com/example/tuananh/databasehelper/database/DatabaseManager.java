@@ -52,7 +52,6 @@ public class DatabaseManager implements DatabaseInterface {
         queryHelper.addColumn(masterTableName + "." + FIELD_ID);
         queryHelper.addColumn(valueTableName + "." + FIELD_EN_VALUE);
         queryHelper.addColumn(valueTableName + "." + FIELD_JA_VALUE);
-        queryHelper.addOrderBy(FIELD_EN_VALUE);
         queryHelper.setJoinTable(masterTableName, valueTableName,
             columnMasterTableName,
             columnValueTableName);

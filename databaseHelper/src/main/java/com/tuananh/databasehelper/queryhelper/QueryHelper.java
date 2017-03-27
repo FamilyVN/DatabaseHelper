@@ -255,8 +255,18 @@ public class QueryHelper {
         return this;
     }
 
+    public QueryHelper addLimit(int limit) {
+        mLimitClause = String.valueOf(limit);
+        return this;
+    }
+
     public QueryHelper addOffset(String offset) {
         mOffsetClause = offset;
+        return this;
+    }
+
+    public QueryHelper addOffset(int offset) {
+        mOffsetClause = String.valueOf(offset);
         return this;
     }
 
