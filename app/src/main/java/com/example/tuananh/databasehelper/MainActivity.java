@@ -11,11 +11,9 @@ import com.example.tuananh.databasehelper.adapter.SearchRecyclerAdapter;
 import com.example.tuananh.databasehelper.database.DatabaseManager;
 import com.example.tuananh.databasehelper.enums.TypeSearch;
 import com.example.tuananh.databasehelper.model.ItemSearch;
-import com.tuananh.databasehelper.utils.MapParser;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Map;
 
 public class MainActivity extends AppCompatActivity implements View.OnClickListener {
     private SearchRecyclerAdapter mSearchRecyclerAdapter;
@@ -32,12 +30,10 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
     private void loadData(TypeSearch typeSearch) {
         mItemSearchList.clear();
-        List<Map> mapList = DatabaseManager.getInstance(this).getItemSearch(typeSearch);
-        if (mapList != null) {
-            for (Map map : mapList) {
-                ItemSearch itemSearch = MapParser.toObject(map, ItemSearch.class);
-                mItemSearchList.add(itemSearch);
-            }
+        List<ItemSearch> itemSearchList =
+            DatabaseManager.getInstance(this).getItemSearch(typeSearch);
+        if (itemSearchList != null) {
+            mItemSearchList.addAll(itemSearchList);
         }
         mSearchRecyclerAdapter.notifyDataSetChanged();
     }

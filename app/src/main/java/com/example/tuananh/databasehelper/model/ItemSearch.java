@@ -13,6 +13,12 @@ public class ItemSearch {
     @SerializedName("jaValue")
     private String mJaValue;
 
+    public ItemSearch(int id, String enValue, String jaValue) {
+        mId = id;
+        mEnValue = enValue;
+        mJaValue = jaValue;
+    }
+
     public int getId() {
         return mId;
     }
