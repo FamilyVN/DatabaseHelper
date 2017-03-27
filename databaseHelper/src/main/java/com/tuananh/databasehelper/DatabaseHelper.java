@@ -13,13 +13,6 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-
-import static android.database.Cursor.FIELD_TYPE_INTEGER;
-import static android.database.Cursor.FIELD_TYPE_STRING;
 
 /**
  * Created by Tuan Anh on 2/4/2017.
@@ -86,38 +79,6 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 
     @Override
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
-    }
-
-    public List<Map> getMapList(QueryHelper queryHelper) {
-        List<Map> mapList = new ArrayList<>();
-        Cursor cursor = query(queryHelper);
-        if (cursor != null && cursor.moveToFirst()) {
-            do {
-                Map<String, Object> map = new HashMap<>();
-                for (int columnIndex = 0; columnIndex < cursor.getColumnCount(); columnIndex++) {
-                    map.put(cursor.getColumnName(columnIndex),
-                        changeDataToString(cursor, columnIndex));
-                }
-                mapList.add(map);
-            }
-            while (cursor.moveToNext());
-        }
-        return mapList;
-    }
-
-    private Object changeDataToString(Cursor cursor, int columnIndex) {
-        Object values = null;
-        switch (cursor.getType(columnIndex)) {
-            case FIELD_TYPE_INTEGER:
-                values = cursor.getInt(columnIndex);
-                break;
-            case FIELD_TYPE_STRING:
-                values = cursor.getString(columnIndex);
-                break;
-            default:
-                break;
-        }
-        return values;
     }
 
     public Cursor query(QueryHelper queryHelper) {

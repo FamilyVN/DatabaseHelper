@@ -98,6 +98,7 @@ public class QueryHelper {
      * @return QueryHelper
      */
     public QueryHelper addAllColumns(List<String> columnList) {
+        if (columnList == null) return this;
         mColumnList.addAll(columnList);
         return this;
     }
@@ -108,6 +109,7 @@ public class QueryHelper {
      */
     public QueryHelper setColumns(List<String> columnList) {
         mColumnList.clear();
+        if (columnList == null) return this;
         addAllColumns(columnList);
         return this;
     }
@@ -147,6 +149,8 @@ public class QueryHelper {
                 newWhere += columnName + " = ? ";
                 mSelectionArgs.put(columnName, val);
             }
+        } else {
+            newWhere += columnName + " is null ";
         }
         concatWhereClause(newWhere);
         return this;
@@ -280,13 +284,15 @@ public class QueryHelper {
      * @return String[] selectionArgs
      */
     public String[] getSelectionArgs() {
-        Object[] values = mSelectionArgs.values().toArray();
-        int length = values.length;
-        String[] selectionArgs = new String[length];
-        for (int i = 0; i < length; i++) {
-            selectionArgs[i] = values[i].toString();
+        List<String> keySets = new ArrayList<>(mSelectionArgs.keySet());
+        int size = keySets.size();
+        int index = 0;
+        String[] paramMap = new String[size];
+        for (int i = size - 1; i >= 0; i--) {
+            paramMap[index] = mSelectionArgs.get(keySets.get(i)).toString();
+            index++;
         }
-        return selectionArgs;
+        return paramMap;
     }
 }
 
