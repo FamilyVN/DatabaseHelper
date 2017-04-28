@@ -156,6 +156,27 @@ public class QueryHelper {
         return this;
     }
 
+    public QueryHelper addConditionNotIn(String columnName, List<Object> valList) {
+        String newWhere = "";
+        if (valList != null) {
+            StringBuilder builder = new StringBuilder("(");
+            int size = valList.size();
+            for (int i = 0; i < size; i++) {
+                Object val = valList.get(i);
+                if (val != null) {
+                    builder.append(val);
+                    if (i != size - 1) {
+                        builder.append(",");
+                    }
+                }
+            }
+            builder.append(")");
+            newWhere += columnName + " not in " + builder.toString();
+        }
+        concatWhereClause(newWhere);
+        return this;
+    }
+
     /**
      * add condition search default
      *
